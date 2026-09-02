@@ -1,0 +1,24 @@
+[project]
+name = "tzimpact"
+version = "0.0.1"
+description = "Find which stored future timestamps changed meaning when the IANA time zone database was updated"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = []
+
+[project.scripts]
+tzimpact = "tzimpact.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
