@@ -8,7 +8,7 @@ import json
 import sys
 
 from . import corrections as corr
-from . import dataset, releases
+from . import dataset, releases, watch
 from .diff import DiffResult, diff
 from .ics import scan_ics_report
 from .scan import index_changes, scan_postgres, scan_sqlite
@@ -166,6 +166,14 @@ def cmd_dataset(args) -> int:
     return 0
 
 
+def cmd_watch(args) -> int:
+    names = args.names or releases.list_releases(since="2020a")
+    result = watch.check(args.index, names)
+    print(json.dumps(result, indent=2))
+    watch.write_github_output(result)
+    return 0
+
+
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(prog="tzimpact", description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -205,6 +213,15 @@ def main(argv=None) -> int:
     ds.add_argument("--to", dest="to_version", default=None, help="last release to include (default: newest on IANA)")
     ds.add_argument("--out", default="data")
     ds.set_defaults(func=cmd_dataset)
+
+    w = sub.add_parser("watch", help="is a tzdb release newer than the committed dataset? (never modifies anything)")
+
+    w.add_argument("--index", default="data/index.json")
+
+    w.add_argument("--names", nargs="*", help="release names to consider instead of fetching IANA's index (tests)")
+
+    w.set_defaults(func=cmd_watch)
+
 
     args = p.parse_args(argv)
     if args.func is cmd_diff:

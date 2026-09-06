@@ -1,0 +1,64 @@
+name: tzdata-watch
+
+# Detect a tzdb release newer than the committed dataset and open a pull
+# request that regenerates data/. The bot only proposes: it never pushes to
+# main and nothing here merges. CI on the PR runs the golden suite and the
+# dataset drift guard against the regenerated files.
+#
+# UNVERIFIED until it has run on GitHub: the detection logic is unit-tested
+# (tests/test_watch.py) and every command below runs locally, but the workflow
+# file itself has not executed in Actions yet.
+
+on:
+  schedule:
+    - cron: "41 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Preflight - zic compiles the releases
+        run: command -v zic >/dev/null || { echo "::error::zic not found"; exit 1; }
+
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e .
+
+      - name: Compare IANA index with data/index.json
+        id: watch
+        run: tzimpact watch --index data/index.json
+
+      - name: Regenerate the dataset
+        if: steps.watch.outputs.update_needed == 'true'
+        run: tzimpact dataset --from 2020a --out data
+
+      - name: Show what changed
+        if: steps.watch.outputs.update_needed == 'true'
+        run: git --no-pager diff --stat
+
+      - name: Open a pull request (never merged automatically)
+        if: steps.watch.outputs.update_needed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: tzdata/${{ steps.watch.outputs.available }}
+          commit-message: "data: regenerate for tzdata ${{ steps.watch.outputs.available }}"
+          title: "tzdata ${{ steps.watch.outputs.available }}: regenerate dataset"
+          body: |
+            IANA published tzdata ${{ steps.watch.outputs.available }}; the committed dataset stops at ${{ steps.watch.outputs.committed }}.
+
+            This PR regenerates `data/` with `tzimpact dataset --from 2020a --out data`.
+            CI will run the golden suite and the dataset drift guard against it.
+            A human decides whether the new pair's changed zones match the release's NEWS
+            before merging (tests/test_golden.py CASES must gain the new pair).
+          labels: tzdata
+          delete-branch: true
