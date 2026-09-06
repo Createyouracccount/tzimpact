@@ -5,6 +5,7 @@ projection of the same diff. If they disagree, the projection is wrong.
 """
 
 import json
+import pathlib
 
 import pytest
 
@@ -45,3 +46,28 @@ def test_write_all_and_index(tmp_path):
     index = json.loads((tmp_path / "index.json").read_text())
     assert [p["file"] for p in index["pairs"]] == ["2026a-2026b.json", "2026b-2026c.json"]
     assert index["pairs"][1]["changed_zone_count"] == 3
+
+
+DATA_DIR = pathlib.Path(__file__).resolve().parent.parent / "data"
+
+
+def test_committed_data_is_not_stale():
+    """The files in data/ must be byte-identical to what dataset.build() produces.
+
+    Without this, a hand-edited or stale JSON in data/ passes every other test:
+    test_dataset_matches_golden rebuilds from source and never opens data/.
+    A regenerate (tzimpact dataset --from 2020a --to <newest> --out data) fixes
+    a failure here; do not edit data/ by hand.
+    """
+    index = json.loads((DATA_DIR / "index.json").read_text())
+    on_disk = {p.name for p in DATA_DIR.glob("*.json")} - {"index.json"}
+    assert {p["file"] for p in index["pairs"]} == on_disk, "index.json and data/ disagree"
+    drift = []
+    for pair in index["pairs"]:
+        path = DATA_DIR / pair["file"]
+        committed = path.read_text()
+        fresh = json.dumps(dataset.build(pair["from"], pair["to"]), indent=2) + "\n"
+        if committed != fresh:
+            drift.append(pair["file"])
+        assert pair["changed_zone_count"] == len({e["zone"] for e in json.loads(committed)["changed_zones"]})
+    assert not drift, f"data/ is stale or hand-edited: {drift} - regenerate with `tzimpact dataset`"
