@@ -77,6 +77,10 @@ def format_like(raw: object, utc_ts: int) -> object:
         return int(utc_ts)
     if isinstance(raw, float):
         return float(utc_ts)
+    if isinstance(raw, dt.datetime):
+        if raw.tzinfo is None:  # Postgres `timestamp` read as UTC (see scan.to_instant)
+            return dt.datetime.fromtimestamp(utc_ts, _UTC).replace(tzinfo=None)
+        return dt.datetime.fromtimestamp(utc_ts, raw.tzinfo)
     s = str(raw)
     text = s.strip()
     sep = "T" if "T" in text else " "
@@ -121,6 +125,10 @@ def literal(v: object) -> str:
         return repr(v)
     if isinstance(v, (bytes, bytearray)):
         return "X'" + bytes(v).hex() + "'"
+    if isinstance(v, dt.datetime):  # standard SQL literals; Postgres accepts both
+        if v.tzinfo is None:
+            return f"TIMESTAMP '{v.isoformat(sep=' ')}'"
+        return f"TIMESTAMP WITH TIME ZONE '{v.isoformat(sep=' ')}'"
     return "'" + str(v).replace("'", "''") + "'"
 
 

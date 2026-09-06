@@ -9,7 +9,7 @@ import sys
 
 from . import corrections as corr
 from .diff import DiffResult, diff
-from .scan import index_changes, scan_sqlite
+from .scan import index_changes, scan_postgres, scan_sqlite
 
 EXIT_INCOMPLETE = 2  # some zones could not be compared; the answer is not complete
 
@@ -70,9 +70,10 @@ def cmd_diff(args) -> int:
 
 def cmd_scan(args) -> int:
     result = diff(args.from_version, args.to_version, years=args.years)
-    hits, total = scan_sqlite(
-        args.sqlite, args.table, args.id_col, args.utc_col, args.tz_col, result.changes
-    )
+    if args.pg:
+        hits, total = scan_postgres(args.pg, args.table, args.id_col, args.utc_col, args.tz_col, result.changes)
+    else:
+        hits, total = scan_sqlite(args.sqlite, args.table, args.id_col, args.utc_col, args.tz_col, result.changes)
     print(f"{args.table}: {total:,} rows scanned")
     print(f"  {len(hits):,} rows affected ({len(hits)/total*100:.1f}%)" if total else "  empty")
     from collections import Counter
@@ -120,7 +121,9 @@ def main(argv=None) -> int:
     s = sub.add_parser("scan", help="which stored rows are affected")
     s.add_argument("--from", dest="from_version", required=True)
     s.add_argument("--to", dest="to_version", required=True)
-    s.add_argument("--sqlite", required=True)
+    src = s.add_mutually_exclusive_group(required=True)
+    src.add_argument("--sqlite", help="path to a SQLite database")
+    src.add_argument("--pg", metavar="DSN", help="Postgres DSN, e.g. postgresql://user:pw@host/db (needs tzimpact[postgres])")
     s.add_argument("--table", required=True)
     s.add_argument("--id-col", default="id")
     s.add_argument("--utc-col", required=True)

@@ -58,6 +58,28 @@ def _ident(name: str) -> str:
     return '"' + str(name).replace('"', '""') + '"'
 
 
+def to_instant(raw: object, naive_is_utc: bool) -> int:
+    """Stored cell -> UTC epoch seconds.
+
+    Integers/floats are epoch seconds. datetimes and ISO strings with an offset
+    (or 'Z') are exact. A *naive* value is interpreted as UTC for Postgres
+    (`timestamp without time zone` under a --utc-col flag) and, for SQLite, as
+    the machine's local time - the historical behaviour, see RISKS R15.
+    """
+    if isinstance(raw, bool):
+        raise TypeError("boolean stored instant")
+    if isinstance(raw, (int, float)):
+        return int(raw)
+    if isinstance(raw, dt.datetime):
+        if raw.tzinfo is None:
+            return int(raw.replace(tzinfo=dt.timezone.utc).timestamp()) if naive_is_utc else int(raw.timestamp())
+        return int(raw.timestamp())
+    parsed = dt.datetime.fromisoformat(str(raw).strip().replace("Z", "+00:00"))
+    if parsed.tzinfo is None and naive_is_utc:
+        parsed = parsed.replace(tzinfo=dt.timezone.utc)
+    return int(parsed.timestamp())
+
+
 def scan_sqlite(
     db: str, table: str, id_col: str, utc_col: str, tz_col: str, changes: list[Change]
 ) -> tuple[list[Affected], int]:
@@ -70,11 +92,34 @@ def scan_sqlite(
     hits = []
     for r in rows:
         raw = r[utc_col]
-        ts = int(raw) if isinstance(raw, (int, float)) else int(
-            dt.datetime.fromisoformat(str(raw).replace("Z", "+00:00")).timestamp()
-        )
-        hit = match(r[id_col], r[tz_col], ts, by_zone, stored_raw=raw)
+        hit = match(r[id_col], r[tz_col], to_instant(raw, naive_is_utc=False), by_zone, stored_raw=raw)
         if hit:
             hits.append(hit)
     conn.close()
+    return hits, len(rows)
+
+
+def scan_postgres(
+    dsn: str, table: str, id_col: str, utc_col: str, tz_col: str, changes: list[Change]
+) -> tuple[list[Affected], int]:
+    """Same contract as scan_sqlite. Read-only: one SELECT, no writes, no temp objects.
+
+    Requires the optional dependency psycopg (`pip install tzimpact[postgres]`).
+    `timestamptz` and epoch integers are exact; `timestamp without time zone`
+    is read as UTC, which is what a --utc-col column is declared to hold.
+    """
+    try:
+        import psycopg
+    except ImportError as exc:  # loud, not silent
+        raise RuntimeError("Postgres scanning needs psycopg: pip install 'tzimpact[postgres]'") from exc
+    by_zone = index_changes(changes)
+    with psycopg.connect(dsn) as conn:
+        with conn.cursor() as cur:
+            cur.execute(f"SELECT {_ident(id_col)}, {_ident(utc_col)}, {_ident(tz_col)} FROM {_ident(table)}")
+            rows = cur.fetchall()
+    hits = []
+    for row_id, raw, zone in rows:
+        hit = match(row_id, zone, to_instant(raw, naive_is_utc=True), by_zone, stored_raw=raw)
+        if hit:
+            hits.append(hit)
     return hits, len(rows)
