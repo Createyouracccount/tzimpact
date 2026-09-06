@@ -1,0 +1,248 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2021e",
+  "to": "2022a",
+  "released": "2022-03-15",
+  "news_header_label": "2022a",
+  "window": {
+    "since": "2022-03-15T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": [
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2022-03-25T22:00:00Z",
+      "to_utc": "2022-03-26T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2023-03-24T22:00:00Z",
+      "to_utc": "2023-03-25T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2024-03-29T22:00:00Z",
+      "to_utc": "2024-03-30T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2025-03-28T22:00:00Z",
+      "to_utc": "2025-03-29T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2025-10-23T22:00:00Z",
+      "to_utc": "2025-10-30T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2026-03-27T22:00:00Z",
+      "to_utc": "2026-03-28T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2026-10-22T22:00:00Z",
+      "to_utc": "2026-10-29T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2027-03-26T22:00:00Z",
+      "to_utc": "2027-03-27T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2028-03-24T22:00:00Z",
+      "to_utc": "2028-03-25T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2029-03-23T22:00:00Z",
+      "to_utc": "2029-03-24T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2030-03-29T22:00:00Z",
+      "to_utc": "2030-03-30T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2031-03-28T22:00:00Z",
+      "to_utc": "2031-03-29T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2031-10-23T22:00:00Z",
+      "to_utc": "2031-10-30T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2022-03-25T22:00:00Z",
+      "to_utc": "2022-03-26T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2023-03-24T22:00:00Z",
+      "to_utc": "2023-03-25T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2024-03-29T22:00:00Z",
+      "to_utc": "2024-03-30T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2025-03-28T22:00:00Z",
+      "to_utc": "2025-03-29T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2025-10-23T22:00:00Z",
+      "to_utc": "2025-10-30T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2026-03-27T22:00:00Z",
+      "to_utc": "2026-03-28T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2026-10-22T22:00:00Z",
+      "to_utc": "2026-10-29T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2027-03-26T22:00:00Z",
+      "to_utc": "2027-03-27T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2028-03-24T22:00:00Z",
+      "to_utc": "2028-03-25T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2029-03-23T22:00:00Z",
+      "to_utc": "2029-03-24T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2030-03-29T22:00:00Z",
+      "to_utc": "2030-03-30T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2031-03-28T22:00:00Z",
+      "to_utc": "2031-03-29T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2031-10-23T22:00:00Z",
+      "to_utc": "2031-10-30T22:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    }
+  ]
+}

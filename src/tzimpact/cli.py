@@ -8,6 +8,7 @@ import json
 import sys
 
 from . import corrections as corr
+from . import dataset, releases
 from .diff import DiffResult, diff
 from .scan import index_changes, scan_postgres, scan_sqlite
 
@@ -107,6 +108,20 @@ def cmd_scan(args) -> int:
     return EXIT_INCOMPLETE if result.unparseable else 0
 
 
+def cmd_dataset(args) -> int:
+    import pathlib
+
+    versions = releases.list_releases(since=args.from_version)
+    if args.to_version:
+        versions = [v for v in versions if v <= args.to_version]
+    if len(versions) < 2:
+        print(f"need at least two releases from {args.from_version}; got {versions}", file=sys.stderr)
+        return 1
+    written = dataset.write_all(versions, pathlib.Path(args.out))
+    print(f"wrote {len(written)} pair files + index.json to {args.out} ({versions[0]} .. {versions[-1]})")
+    return 0
+
+
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(prog="tzimpact", description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -136,6 +151,12 @@ def main(argv=None) -> int:
     )
     s.add_argument("--corrections", default="corrections.sql", help="where to write the SQL (never executed)")
     s.set_defaults(func=cmd_scan)
+
+    ds = sub.add_parser("dataset", help="write tzimpact-data JSON for every consecutive release pair")
+    ds.add_argument("--from", dest="from_version", default="2020a")
+    ds.add_argument("--to", dest="to_version", default=None, help="last release to include (default: newest on IANA)")
+    ds.add_argument("--out", default="data")
+    ds.set_defaults(func=cmd_dataset)
 
     args = p.parse_args(argv)
     return args.func(args)

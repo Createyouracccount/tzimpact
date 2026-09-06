@@ -1,0 +1,146 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2022a",
+  "to": "2022b",
+  "released": "2022-08-10",
+  "news_header_label": "2022b",
+  "window": {
+    "since": "2022-08-10T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": [
+    {
+      "zone": "America/Santiago",
+      "from_utc": "2022-09-04T04:00:00Z",
+      "to_utc": "2022-09-11T04:00:00Z",
+      "old_offset": -10800,
+      "new_offset": -14400,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Chile/Continental"
+      ]
+    },
+    {
+      "zone": "Asia/Tehran",
+      "from_utc": "2023-03-21T20:30:00Z",
+      "to_utc": "2023-09-21T19:30:00Z",
+      "old_offset": 16200,
+      "new_offset": 12600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Iran"
+      ]
+    },
+    {
+      "zone": "Asia/Tehran",
+      "from_utc": "2024-03-20T20:30:00Z",
+      "to_utc": "2024-09-20T19:30:00Z",
+      "old_offset": 16200,
+      "new_offset": 12600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Iran"
+      ]
+    },
+    {
+      "zone": "Asia/Tehran",
+      "from_utc": "2025-03-21T20:30:00Z",
+      "to_utc": "2025-09-21T19:30:00Z",
+      "old_offset": 16200,
+      "new_offset": 12600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Iran"
+      ]
+    },
+    {
+      "zone": "Asia/Tehran",
+      "from_utc": "2026-03-21T20:30:00Z",
+      "to_utc": "2026-09-21T19:30:00Z",
+      "old_offset": 16200,
+      "new_offset": 12600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Iran"
+      ]
+    },
+    {
+      "zone": "Asia/Tehran",
+      "from_utc": "2027-03-21T20:30:00Z",
+      "to_utc": "2027-09-21T19:30:00Z",
+      "old_offset": 16200,
+      "new_offset": 12600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Iran"
+      ]
+    },
+    {
+      "zone": "Asia/Tehran",
+      "from_utc": "2028-03-20T20:30:00Z",
+      "to_utc": "2028-09-20T19:30:00Z",
+      "old_offset": 16200,
+      "new_offset": 12600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Iran"
+      ]
+    },
+    {
+      "zone": "Asia/Tehran",
+      "from_utc": "2029-03-20T20:30:00Z",
+      "to_utc": "2029-09-20T19:30:00Z",
+      "old_offset": 16200,
+      "new_offset": 12600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Iran"
+      ]
+    },
+    {
+      "zone": "Asia/Tehran",
+      "from_utc": "2030-03-21T20:30:00Z",
+      "to_utc": "2030-09-21T19:30:00Z",
+      "old_offset": 16200,
+      "new_offset": 12600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Iran"
+      ]
+    },
+    {
+      "zone": "Asia/Tehran",
+      "from_utc": "2031-03-21T20:30:00Z",
+      "to_utc": "2031-09-21T19:30:00Z",
+      "old_offset": 16200,
+      "new_offset": 12600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Iran"
+      ]
+    },
+    {
+      "zone": "Asia/Tehran",
+      "from_utc": "2032-03-20T20:30:00Z",
+      "to_utc": null,
+      "old_offset": 16200,
+      "new_offset": 12600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Iran"
+      ]
+    },
+    {
+      "zone": "Pacific/Easter",
+      "from_utc": "2022-09-04T04:00:00Z",
+      "to_utc": "2022-09-11T04:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Chile/EasterIsland"
+      ]
+    }
+  ]
+}

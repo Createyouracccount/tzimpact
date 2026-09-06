@@ -1,0 +1,23 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2023b",
+  "to": "2023c",
+  "released": "2023-03-28",
+  "news_header_label": "2023c",
+  "window": {
+    "since": "2023-03-28T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": [
+    {
+      "zone": "Asia/Beirut",
+      "from_utc": "2023-03-28T00:00:00Z",
+      "to_utc": "2023-04-20T22:00:00Z",
+      "old_offset": 7200,
+      "new_offset": 10800,
+      "shift_seconds": 3600,
+      "aliases": []
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2020d",
+  "to": "2020e",
+  "released": "2020-12-22",
+  "news_header_label": "2020e",
+  "window": {
+    "since": "2020-12-22T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": [
+    {
+      "zone": "Europe/Volgograd",
+      "from_utc": "2020-12-26T22:00:00Z",
+      "to_utc": null,
+      "old_offset": 14400,
+      "new_offset": 10800,
+      "shift_seconds": -3600,
+      "aliases": []
+    }
+  ]
+}

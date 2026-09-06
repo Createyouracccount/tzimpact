@@ -1,0 +1,208 @@
+{
+  "schema": "tzimpact-data/1",
+  "pairs": [
+    {
+      "from": "2020a",
+      "to": "2020b",
+      "released": "2020-10-06",
+      "file": "2020a-2020b.json",
+      "changed_zone_count": 4
+    },
+    {
+      "from": "2020b",
+      "to": "2020c",
+      "released": "2020-10-16",
+      "file": "2020b-2020c.json",
+      "changed_zone_count": 1
+    },
+    {
+      "from": "2020c",
+      "to": "2020d",
+      "released": "2020-10-21",
+      "file": "2020c-2020d.json",
+      "changed_zone_count": 2
+    },
+    {
+      "from": "2020d",
+      "to": "2020e",
+      "released": "2020-12-22",
+      "file": "2020d-2020e.json",
+      "changed_zone_count": 1
+    },
+    {
+      "from": "2020e",
+      "to": "2020f",
+      "released": "2020-12-29",
+      "file": "2020e-2020f.json",
+      "changed_zone_count": 0
+    },
+    {
+      "from": "2020f",
+      "to": "2021a",
+      "released": "2021-01-24",
+      "file": "2020f-2021a.json",
+      "changed_zone_count": 1
+    },
+    {
+      "from": "2021a",
+      "to": "2021b",
+      "released": "2021-09-24",
+      "file": "2021a-2021b.json",
+      "changed_zone_count": 2
+    },
+    {
+      "from": "2021b",
+      "to": "2021c",
+      "released": "2021-10-01",
+      "file": "2021b-2021c.json",
+      "changed_zone_count": 0
+    },
+    {
+      "from": "2021c",
+      "to": "2021d",
+      "released": "2021-10-15",
+      "file": "2021c-2021d.json",
+      "changed_zone_count": 1
+    },
+    {
+      "from": "2021d",
+      "to": "2021e",
+      "released": "2021-10-21",
+      "file": "2021d-2021e.json",
+      "changed_zone_count": 2
+    },
+    {
+      "from": "2021e",
+      "to": "2022a",
+      "released": "2022-03-15",
+      "file": "2021e-2022a.json",
+      "changed_zone_count": 2
+    },
+    {
+      "from": "2022a",
+      "to": "2022b",
+      "released": "2022-08-10",
+      "file": "2022a-2022b.json",
+      "changed_zone_count": 3
+    },
+    {
+      "from": "2022b",
+      "to": "2022c",
+      "released": "2022-08-15",
+      "file": "2022b-2022c.json",
+      "changed_zone_count": 0
+    },
+    {
+      "from": "2022c",
+      "to": "2022d",
+      "released": "2022-09-23",
+      "file": "2022c-2022d.json",
+      "changed_zone_count": 2
+    },
+    {
+      "from": "2022d",
+      "to": "2022e",
+      "released": "2022-10-11",
+      "file": "2022d-2022e.json",
+      "changed_zone_count": 2
+    },
+    {
+      "from": "2022e",
+      "to": "2022f",
+      "released": "2022-10-28",
+      "file": "2022e-2022f.json",
+      "changed_zone_count": 8
+    },
+    {
+      "from": "2022f",
+      "to": "2022g",
+      "released": "2022-11-29",
+      "file": "2022f-2022g.json",
+      "changed_zone_count": 2
+    },
+    {
+      "from": "2022g",
+      "to": "2023a",
+      "released": "2023-03-22",
+      "file": "2022g-2023a.json",
+      "changed_zone_count": 6
+    },
+    {
+      "from": "2023a",
+      "to": "2023b",
+      "released": "2023-03-23",
+      "file": "2023a-2023b.json",
+      "changed_zone_count": 1
+    },
+    {
+      "from": "2023b",
+      "to": "2023c",
+      "released": "2023-03-28",
+      "file": "2023b-2023c.json",
+      "changed_zone_count": 1
+    },
+    {
+      "from": "2023c",
+      "to": "2023d",
+      "released": "2023-12-21",
+      "file": "2023c-2023d.json",
+      "changed_zone_count": 3
+    },
+    {
+      "from": "2023d",
+      "to": "2024a",
+      "released": "2024-02-01",
+      "file": "2023d-2024a.json",
+      "changed_zone_count": 4
+    },
+    {
+      "from": "2024a",
+      "to": "2024b",
+      "released": "2024-09-04",
+      "file": "2024a-2024b.json",
+      "changed_zone_count": 0
+    },
+    {
+      "from": "2024b",
+      "to": "2025a",
+      "released": "2025-01-15",
+      "file": "2024b-2025a.json",
+      "changed_zone_count": 1
+    },
+    {
+      "from": "2025a",
+      "to": "2025b",
+      "released": "2025-03-22",
+      "file": "2025a-2025b.json",
+      "changed_zone_count": 0
+    },
+    {
+      "from": "2025b",
+      "to": "2025c",
+      "released": "2025-12-10",
+      "file": "2025b-2025c.json",
+      "changed_zone_count": 0
+    },
+    {
+      "from": "2025c",
+      "to": "2026a",
+      "released": "2026-03-01",
+      "file": "2025c-2026a.json",
+      "changed_zone_count": 1
+    },
+    {
+      "from": "2026a",
+      "to": "2026b",
+      "released": "2026-04-22",
+      "file": "2026a-2026b.json",
+      "changed_zone_count": 1
+    },
+    {
+      "from": "2026b",
+      "to": "2026c",
+      "released": "2026-07-08",
+      "file": "2026b-2026c.json",
+      "changed_zone_count": 3
+    }
+  ]
+}

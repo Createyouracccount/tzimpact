@@ -1,0 +1,313 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2022g",
+  "to": "2023a",
+  "released": "2023-03-22",
+  "news_header_label": "2023a",
+  "window": {
+    "since": "2023-03-22T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": [
+    {
+      "zone": "Africa/Cairo",
+      "from_utc": "2023-04-27T22:00:00Z",
+      "to_utc": "2023-10-26T21:00:00Z",
+      "old_offset": 7200,
+      "new_offset": 10800,
+      "shift_seconds": 3600,
+      "aliases": [
+        "Egypt"
+      ]
+    },
+    {
+      "zone": "Africa/Cairo",
+      "from_utc": "2024-04-25T22:00:00Z",
+      "to_utc": "2024-10-31T21:00:00Z",
+      "old_offset": 7200,
+      "new_offset": 10800,
+      "shift_seconds": 3600,
+      "aliases": [
+        "Egypt"
+      ]
+    },
+    {
+      "zone": "Africa/Cairo",
+      "from_utc": "2025-04-24T22:00:00Z",
+      "to_utc": "2025-10-30T21:00:00Z",
+      "old_offset": 7200,
+      "new_offset": 10800,
+      "shift_seconds": 3600,
+      "aliases": [
+        "Egypt"
+      ]
+    },
+    {
+      "zone": "Africa/Cairo",
+      "from_utc": "2026-04-23T22:00:00Z",
+      "to_utc": "2026-10-29T21:00:00Z",
+      "old_offset": 7200,
+      "new_offset": 10800,
+      "shift_seconds": 3600,
+      "aliases": [
+        "Egypt"
+      ]
+    },
+    {
+      "zone": "Africa/Cairo",
+      "from_utc": "2027-04-29T22:00:00Z",
+      "to_utc": "2027-10-28T21:00:00Z",
+      "old_offset": 7200,
+      "new_offset": 10800,
+      "shift_seconds": 3600,
+      "aliases": [
+        "Egypt"
+      ]
+    },
+    {
+      "zone": "Africa/Cairo",
+      "from_utc": "2028-04-27T22:00:00Z",
+      "to_utc": "2028-10-26T21:00:00Z",
+      "old_offset": 7200,
+      "new_offset": 10800,
+      "shift_seconds": 3600,
+      "aliases": [
+        "Egypt"
+      ]
+    },
+    {
+      "zone": "Africa/Cairo",
+      "from_utc": "2029-04-26T22:00:00Z",
+      "to_utc": "2029-10-25T21:00:00Z",
+      "old_offset": 7200,
+      "new_offset": 10800,
+      "shift_seconds": 3600,
+      "aliases": [
+        "Egypt"
+      ]
+    },
+    {
+      "zone": "Africa/Cairo",
+      "from_utc": "2030-04-25T22:00:00Z",
+      "to_utc": "2030-10-31T21:00:00Z",
+      "old_offset": 7200,
+      "new_offset": 10800,
+      "shift_seconds": 3600,
+      "aliases": [
+        "Egypt"
+      ]
+    },
+    {
+      "zone": "Africa/Cairo",
+      "from_utc": "2031-04-24T22:00:00Z",
+      "to_utc": "2031-10-30T21:00:00Z",
+      "old_offset": 7200,
+      "new_offset": 10800,
+      "shift_seconds": 3600,
+      "aliases": [
+        "Egypt"
+      ]
+    },
+    {
+      "zone": "Africa/Cairo",
+      "from_utc": "2032-04-29T22:00:00Z",
+      "to_utc": "2032-10-28T21:00:00Z",
+      "old_offset": 7200,
+      "new_offset": 10800,
+      "shift_seconds": 3600,
+      "aliases": [
+        "Egypt"
+      ]
+    },
+    {
+      "zone": "Africa/Casablanca",
+      "from_utc": "2023-04-23T02:00:00Z",
+      "to_utc": "2023-04-30T02:00:00Z",
+      "old_offset": 0,
+      "new_offset": 3600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "Africa/Casablanca",
+      "from_utc": "2031-01-26T02:00:00Z",
+      "to_utc": "2031-02-02T02:00:00Z",
+      "old_offset": 0,
+      "new_offset": 3600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "Africa/El_Aaiun",
+      "from_utc": "2023-04-23T02:00:00Z",
+      "to_utc": "2023-04-30T02:00:00Z",
+      "old_offset": 0,
+      "new_offset": 3600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "Africa/El_Aaiun",
+      "from_utc": "2031-01-26T02:00:00Z",
+      "to_utc": "2031-02-02T02:00:00Z",
+      "old_offset": 0,
+      "new_offset": 3600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Nuuk",
+      "from_utc": "2024-03-31T01:00:00Z",
+      "to_utc": "2024-10-27T01:00:00Z",
+      "old_offset": -7200,
+      "new_offset": -3600,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Godthab"
+      ]
+    },
+    {
+      "zone": "America/Nuuk",
+      "from_utc": "2025-03-30T01:00:00Z",
+      "to_utc": "2025-10-26T01:00:00Z",
+      "old_offset": -7200,
+      "new_offset": -3600,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Godthab"
+      ]
+    },
+    {
+      "zone": "America/Nuuk",
+      "from_utc": "2026-03-29T01:00:00Z",
+      "to_utc": "2026-10-25T01:00:00Z",
+      "old_offset": -7200,
+      "new_offset": -3600,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Godthab"
+      ]
+    },
+    {
+      "zone": "America/Nuuk",
+      "from_utc": "2027-03-28T01:00:00Z",
+      "to_utc": "2027-10-31T01:00:00Z",
+      "old_offset": -7200,
+      "new_offset": -3600,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Godthab"
+      ]
+    },
+    {
+      "zone": "America/Nuuk",
+      "from_utc": "2028-03-26T01:00:00Z",
+      "to_utc": "2028-10-29T01:00:00Z",
+      "old_offset": -7200,
+      "new_offset": -3600,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Godthab"
+      ]
+    },
+    {
+      "zone": "America/Nuuk",
+      "from_utc": "2029-03-25T01:00:00Z",
+      "to_utc": "2029-10-28T01:00:00Z",
+      "old_offset": -7200,
+      "new_offset": -3600,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Godthab"
+      ]
+    },
+    {
+      "zone": "America/Nuuk",
+      "from_utc": "2030-03-31T01:00:00Z",
+      "to_utc": "2030-10-27T01:00:00Z",
+      "old_offset": -7200,
+      "new_offset": -3600,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Godthab"
+      ]
+    },
+    {
+      "zone": "America/Nuuk",
+      "from_utc": "2031-03-30T01:00:00Z",
+      "to_utc": "2031-10-26T01:00:00Z",
+      "old_offset": -7200,
+      "new_offset": -3600,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Godthab"
+      ]
+    },
+    {
+      "zone": "America/Nuuk",
+      "from_utc": "2032-03-28T01:00:00Z",
+      "to_utc": "2032-10-31T01:00:00Z",
+      "old_offset": -7200,
+      "new_offset": -3600,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Godthab"
+      ]
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2023-03-25T00:00:00Z",
+      "to_utc": "2023-04-29T00:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2024-03-30T00:00:00Z",
+      "to_utc": "2024-04-13T00:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Gaza",
+      "from_utc": "2025-03-29T00:00:00Z",
+      "to_utc": "2025-04-05T00:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2023-03-25T00:00:00Z",
+      "to_utc": "2023-04-29T00:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2024-03-30T00:00:00Z",
+      "to_utc": "2024-04-13T00:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Asia/Hebron",
+      "from_utc": "2025-03-29T00:00:00Z",
+      "to_utc": "2025-04-05T00:00:00Z",
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    }
+  ]
+}

@@ -1,0 +1,774 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2022e",
+  "to": "2022f",
+  "released": "2022-10-28",
+  "news_header_label": "2022f",
+  "window": {
+    "since": "2022-10-28T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": [
+    {
+      "zone": "America/Bahia_Banderas",
+      "from_utc": "2023-04-02T08:00:00Z",
+      "to_utc": "2023-10-29T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Bahia_Banderas",
+      "from_utc": "2024-04-07T08:00:00Z",
+      "to_utc": "2024-10-27T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Bahia_Banderas",
+      "from_utc": "2025-04-06T08:00:00Z",
+      "to_utc": "2025-10-26T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Bahia_Banderas",
+      "from_utc": "2026-04-05T08:00:00Z",
+      "to_utc": "2026-10-25T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Bahia_Banderas",
+      "from_utc": "2027-04-04T08:00:00Z",
+      "to_utc": "2027-10-31T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Bahia_Banderas",
+      "from_utc": "2028-04-02T08:00:00Z",
+      "to_utc": "2028-10-29T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Bahia_Banderas",
+      "from_utc": "2029-04-01T08:00:00Z",
+      "to_utc": "2029-10-28T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Bahia_Banderas",
+      "from_utc": "2030-04-07T08:00:00Z",
+      "to_utc": "2030-10-27T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Bahia_Banderas",
+      "from_utc": "2031-04-06T08:00:00Z",
+      "to_utc": "2031-10-26T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Bahia_Banderas",
+      "from_utc": "2032-04-04T08:00:00Z",
+      "to_utc": null,
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Chihuahua",
+      "from_utc": "2022-10-30T08:00:00Z",
+      "to_utc": "2023-04-02T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Chihuahua",
+      "from_utc": "2023-10-29T08:00:00Z",
+      "to_utc": "2024-04-07T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Chihuahua",
+      "from_utc": "2024-10-27T08:00:00Z",
+      "to_utc": "2025-04-06T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Chihuahua",
+      "from_utc": "2025-10-26T08:00:00Z",
+      "to_utc": "2026-04-05T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Chihuahua",
+      "from_utc": "2026-10-25T08:00:00Z",
+      "to_utc": "2027-04-04T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Chihuahua",
+      "from_utc": "2027-10-31T08:00:00Z",
+      "to_utc": "2028-04-02T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Chihuahua",
+      "from_utc": "2028-10-29T08:00:00Z",
+      "to_utc": "2029-04-01T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Chihuahua",
+      "from_utc": "2029-10-28T08:00:00Z",
+      "to_utc": "2030-04-07T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Chihuahua",
+      "from_utc": "2030-10-27T08:00:00Z",
+      "to_utc": "2031-04-06T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Chihuahua",
+      "from_utc": "2031-10-26T08:00:00Z",
+      "to_utc": "2032-04-04T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Mazatlan",
+      "from_utc": "2023-04-02T09:00:00Z",
+      "to_utc": "2023-10-29T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -25200,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/BajaSur"
+      ]
+    },
+    {
+      "zone": "America/Mazatlan",
+      "from_utc": "2024-04-07T09:00:00Z",
+      "to_utc": "2024-10-27T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -25200,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/BajaSur"
+      ]
+    },
+    {
+      "zone": "America/Mazatlan",
+      "from_utc": "2025-04-06T09:00:00Z",
+      "to_utc": "2025-10-26T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -25200,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/BajaSur"
+      ]
+    },
+    {
+      "zone": "America/Mazatlan",
+      "from_utc": "2026-04-05T09:00:00Z",
+      "to_utc": "2026-10-25T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -25200,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/BajaSur"
+      ]
+    },
+    {
+      "zone": "America/Mazatlan",
+      "from_utc": "2027-04-04T09:00:00Z",
+      "to_utc": "2027-10-31T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -25200,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/BajaSur"
+      ]
+    },
+    {
+      "zone": "America/Mazatlan",
+      "from_utc": "2028-04-02T09:00:00Z",
+      "to_utc": "2028-10-29T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -25200,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/BajaSur"
+      ]
+    },
+    {
+      "zone": "America/Mazatlan",
+      "from_utc": "2029-04-01T09:00:00Z",
+      "to_utc": "2029-10-28T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -25200,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/BajaSur"
+      ]
+    },
+    {
+      "zone": "America/Mazatlan",
+      "from_utc": "2030-04-07T09:00:00Z",
+      "to_utc": "2030-10-27T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -25200,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/BajaSur"
+      ]
+    },
+    {
+      "zone": "America/Mazatlan",
+      "from_utc": "2031-04-06T09:00:00Z",
+      "to_utc": "2031-10-26T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -25200,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/BajaSur"
+      ]
+    },
+    {
+      "zone": "America/Mazatlan",
+      "from_utc": "2032-04-04T09:00:00Z",
+      "to_utc": null,
+      "old_offset": -21600,
+      "new_offset": -25200,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/BajaSur"
+      ]
+    },
+    {
+      "zone": "America/Merida",
+      "from_utc": "2023-04-02T08:00:00Z",
+      "to_utc": "2023-10-29T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Merida",
+      "from_utc": "2024-04-07T08:00:00Z",
+      "to_utc": "2024-10-27T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Merida",
+      "from_utc": "2025-04-06T08:00:00Z",
+      "to_utc": "2025-10-26T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Merida",
+      "from_utc": "2026-04-05T08:00:00Z",
+      "to_utc": "2026-10-25T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Merida",
+      "from_utc": "2027-04-04T08:00:00Z",
+      "to_utc": "2027-10-31T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Merida",
+      "from_utc": "2028-04-02T08:00:00Z",
+      "to_utc": "2028-10-29T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Merida",
+      "from_utc": "2029-04-01T08:00:00Z",
+      "to_utc": "2029-10-28T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Merida",
+      "from_utc": "2030-04-07T08:00:00Z",
+      "to_utc": "2030-10-27T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Merida",
+      "from_utc": "2031-04-06T08:00:00Z",
+      "to_utc": "2031-10-26T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Merida",
+      "from_utc": "2032-04-04T08:00:00Z",
+      "to_utc": null,
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Mexico_City",
+      "from_utc": "2023-04-02T08:00:00Z",
+      "to_utc": "2023-10-29T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/General"
+      ]
+    },
+    {
+      "zone": "America/Mexico_City",
+      "from_utc": "2024-04-07T08:00:00Z",
+      "to_utc": "2024-10-27T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/General"
+      ]
+    },
+    {
+      "zone": "America/Mexico_City",
+      "from_utc": "2025-04-06T08:00:00Z",
+      "to_utc": "2025-10-26T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/General"
+      ]
+    },
+    {
+      "zone": "America/Mexico_City",
+      "from_utc": "2026-04-05T08:00:00Z",
+      "to_utc": "2026-10-25T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/General"
+      ]
+    },
+    {
+      "zone": "America/Mexico_City",
+      "from_utc": "2027-04-04T08:00:00Z",
+      "to_utc": "2027-10-31T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/General"
+      ]
+    },
+    {
+      "zone": "America/Mexico_City",
+      "from_utc": "2028-04-02T08:00:00Z",
+      "to_utc": "2028-10-29T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/General"
+      ]
+    },
+    {
+      "zone": "America/Mexico_City",
+      "from_utc": "2029-04-01T08:00:00Z",
+      "to_utc": "2029-10-28T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/General"
+      ]
+    },
+    {
+      "zone": "America/Mexico_City",
+      "from_utc": "2030-04-07T08:00:00Z",
+      "to_utc": "2030-10-27T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/General"
+      ]
+    },
+    {
+      "zone": "America/Mexico_City",
+      "from_utc": "2031-04-06T08:00:00Z",
+      "to_utc": "2031-10-26T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/General"
+      ]
+    },
+    {
+      "zone": "America/Mexico_City",
+      "from_utc": "2032-04-04T08:00:00Z",
+      "to_utc": null,
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": [
+        "Mexico/General"
+      ]
+    },
+    {
+      "zone": "America/Monterrey",
+      "from_utc": "2023-04-02T08:00:00Z",
+      "to_utc": "2023-10-29T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Monterrey",
+      "from_utc": "2024-04-07T08:00:00Z",
+      "to_utc": "2024-10-27T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Monterrey",
+      "from_utc": "2025-04-06T08:00:00Z",
+      "to_utc": "2025-10-26T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Monterrey",
+      "from_utc": "2026-04-05T08:00:00Z",
+      "to_utc": "2026-10-25T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Monterrey",
+      "from_utc": "2027-04-04T08:00:00Z",
+      "to_utc": "2027-10-31T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Monterrey",
+      "from_utc": "2028-04-02T08:00:00Z",
+      "to_utc": "2028-10-29T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Monterrey",
+      "from_utc": "2029-04-01T08:00:00Z",
+      "to_utc": "2029-10-28T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Monterrey",
+      "from_utc": "2030-04-07T08:00:00Z",
+      "to_utc": "2030-10-27T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Monterrey",
+      "from_utc": "2031-04-06T08:00:00Z",
+      "to_utc": "2031-10-26T07:00:00Z",
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Monterrey",
+      "from_utc": "2032-04-04T08:00:00Z",
+      "to_utc": null,
+      "old_offset": -18000,
+      "new_offset": -21600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Ojinaga",
+      "from_utc": "2022-11-06T08:00:00Z",
+      "to_utc": "2023-03-12T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Ojinaga",
+      "from_utc": "2023-11-05T08:00:00Z",
+      "to_utc": "2024-03-10T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Ojinaga",
+      "from_utc": "2024-11-03T08:00:00Z",
+      "to_utc": "2025-03-09T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Ojinaga",
+      "from_utc": "2025-11-02T08:00:00Z",
+      "to_utc": "2026-03-08T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Ojinaga",
+      "from_utc": "2026-11-01T08:00:00Z",
+      "to_utc": "2027-03-14T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Ojinaga",
+      "from_utc": "2027-11-07T08:00:00Z",
+      "to_utc": "2028-03-12T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Ojinaga",
+      "from_utc": "2028-11-05T08:00:00Z",
+      "to_utc": "2029-03-11T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Ojinaga",
+      "from_utc": "2029-11-04T08:00:00Z",
+      "to_utc": "2030-03-10T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Ojinaga",
+      "from_utc": "2030-11-03T08:00:00Z",
+      "to_utc": "2031-03-09T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Ojinaga",
+      "from_utc": "2031-11-02T08:00:00Z",
+      "to_utc": "2032-03-14T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2022-11-12T14:00:00Z",
+      "to_utc": "2023-01-14T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2023-11-11T14:00:00Z",
+      "to_utc": "2024-01-13T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2024-11-09T14:00:00Z",
+      "to_utc": "2025-01-11T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2025-11-08T14:00:00Z",
+      "to_utc": "2026-01-17T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2026-11-07T14:00:00Z",
+      "to_utc": "2027-01-16T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2027-11-13T14:00:00Z",
+      "to_utc": "2028-01-15T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2028-11-11T14:00:00Z",
+      "to_utc": "2029-01-13T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2029-11-10T14:00:00Z",
+      "to_utc": "2030-01-12T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2030-11-09T14:00:00Z",
+      "to_utc": "2031-01-11T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2031-11-08T14:00:00Z",
+      "to_utc": "2032-01-17T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    }
+  ]
+}

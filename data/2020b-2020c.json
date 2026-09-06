@@ -1,0 +1,23 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2020b",
+  "to": "2020c",
+  "released": "2020-10-16",
+  "news_header_label": "2020c",
+  "window": {
+    "since": "2020-10-16T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": [
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2020-11-07T14:00:00Z",
+      "to_utc": "2020-12-19T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2020e",
+  "to": "2020f",
+  "released": "2020-12-29",
+  "news_header_label": "2020f",
+  "window": {
+    "since": "2020-12-29T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": []
+}

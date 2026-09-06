@@ -1,0 +1,23 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2021c",
+  "to": "2021d",
+  "released": "2021-10-15",
+  "news_header_label": "2021d",
+  "window": {
+    "since": "2021-10-15T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": [
+    {
+      "zone": "Pacific/Fiji",
+      "from_utc": "2021-11-13T14:00:00Z",
+      "to_utc": "2022-01-15T14:00:00Z",
+      "old_offset": 46800,
+      "new_offset": 43200,
+      "shift_seconds": -3600,
+      "aliases": []
+    }
+  ]
+}

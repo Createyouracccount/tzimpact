@@ -1,0 +1,23 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2020f",
+  "to": "2021a",
+  "released": "2021-01-24",
+  "news_header_label": "2021a",
+  "window": {
+    "since": "2021-01-24T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": [
+    {
+      "zone": "Africa/Juba",
+      "from_utc": "2021-01-31T21:00:00Z",
+      "to_utc": null,
+      "old_offset": 10800,
+      "new_offset": 7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    }
+  ]
+}
