@@ -1,0 +1,24 @@
+{
+  "from": "2026b",
+  "to": "2026c",
+  "rows": 400,
+  "affected": 169,
+  "per_zone": {
+    "Africa/Casablanca": 139,
+    "Africa/El_Aaiun": 22,
+    "America/Edmonton": 8
+  },
+  "shift_hours": {
+    "Africa/Casablanca": [
+      1.0
+    ],
+    "Africa/El_Aaiun": [
+      1.0
+    ],
+    "America/Edmonton": [
+      -1.0
+    ]
+  },
+  "all_corrected_show_intended": true,
+  "seed": 20260920
+}

@@ -80,6 +80,15 @@ winter windows, which is what tzimpact reports (`test_alberta_difference_is_wint
 The parser is separately checked against Python's `zoneinfo` across 12 zones ×
 120 instants spanning both hemispheres.
 
+## Demo
+
+`python docs/demo/make_demo.py --out docs/demo/output` builds a 400-row
+multi-zone clinic bookings database, runs the 2026b → 2026c scan, applies the
+generated `corrections.sql` to a *copy*, and writes a before/after table
+judged with the standard library's `zoneinfo`. A generated sample is in
+[docs/demo/output/](docs/demo/output/): 169 of 400 appointments would have
+shown the wrong time after the tzdata upgrade.
+
 ## Install
 
 ```bash

@@ -1,0 +1,10 @@
+$ tzimpact scan --from 2026b --to 2026c --sqlite clinic.db --table appointments --utc-col starts_at --tz-col tz --corrections corrections.sql
+appointments: 400 rows scanned
+  169 rows affected (42.2%)
+    Africa/Casablanca              139 rows   -1h
+    Africa/El_Aaiun                 22 rows   -1h
+    America/Edmonton                 8 rows   +1h
+  earliest affected: row 108 in Africa/Casablanca
+    was 2026-09-20 12:45  ->  now 2026-09-20 11:45
+  -> corrections written to docs/demo/output/corrections.sql (169 UPDATE, 0 manual review) - review before applying
+  ONE-SHOT: scan once per release upgrade. Do not scan again after applying the file: corrected rows are re-detected and a regenerated file would move them a second time.
