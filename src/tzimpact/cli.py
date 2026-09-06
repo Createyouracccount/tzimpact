@@ -10,9 +10,14 @@ import sys
 from . import corrections as corr
 from . import dataset, releases
 from .diff import DiffResult, diff
+from .ics import scan_ics_report
 from .scan import index_changes, scan_postgres, scan_sqlite
 
 EXIT_INCOMPLETE = 2  # some zones could not be compared; the answer is not complete
+
+
+def _fmt_ts(ts: int) -> str:
+    return dt.datetime.fromtimestamp(ts, dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
 
 
 def _fmt(ts: int | None) -> str:
@@ -69,8 +74,47 @@ def cmd_diff(args) -> int:
     return EXIT_INCOMPLETE if result.unparseable else 0
 
 
+def _scan_ics(args, result: DiffResult) -> int:
+    """Read-only: reports affected events, writes nothing (there is no SQL for a file)."""
+    known = releases.zones(releases.compile(args.to_version))
+    report = scan_ics_report(args.ics, result.changes, args.from_version, args.to_version, known_zones=known)
+    print(f"{args.ics}: {report.total:,} events scanned")
+    print(
+        f"  {len(report.hits):,} events affected"
+        + (f" ({len(report.hits) / report.total * 100:.1f}%)" if report.total else "")
+    )
+    for h in report.hits:
+        print(
+            f"    {h.zone:26} {str(h.row_id)[:40]:40} local {h.old_local}  "
+            f"instant {_fmt_ts(h.stored_utc)} under {args.from_version} -> "
+            f"{_fmt_ts(h.stored_utc - h.shift_seconds)} under {args.to_version}"
+        )
+    print(
+        f"  not affected by definition: {report.utc_events} UTC (Z) events, {report.all_day_events} all-day events"
+    )
+    if report.recurring_events:
+        print(f"  {report.recurring_events} recurring events: only DTSTART assessed, recurrences are not expanded")
+    print("  read-only: tzimpact does not rewrite .ics files; no corrections file is produced for a calendar")
+    incomplete = bool(report.unparseable or result.unparseable)
+    if report.unparseable:
+        n = len(report.unparseable)
+        print(f"WARNING: {n} event{'s' if n != 1 else ''} could not be assessed and {'are' if n != 1 else 'is'} NOT covered:", file=sys.stderr)
+        for u in report.unparseable:
+            print(f"  {u.event_id}: {u.reason}", file=sys.stderr)
+    _warn_incomplete(result)
+    return EXIT_INCOMPLETE if incomplete else 0
+
+
 def cmd_scan(args) -> int:
     result = diff(args.from_version, args.to_version, years=args.years)
+    if args.ics:
+        if args.table or args.utc_col or args.tz_col:
+            print("--ics scans DTSTART;TZID events; --table/--utc-col/--tz-col do not apply", file=sys.stderr)
+            return 1
+        return _scan_ics(args, result)
+    if not (args.table and args.utc_col and args.tz_col):
+        print("--table, --utc-col and --tz-col are required with --sqlite/--pg", file=sys.stderr)
+        return 1
     if args.pg:
         hits, total = scan_postgres(args.pg, args.table, args.id_col, args.utc_col, args.tz_col, result.changes)
     else:
@@ -142,10 +186,11 @@ def main(argv=None) -> int:
     src = s.add_mutually_exclusive_group(required=True)
     src.add_argument("--sqlite", help="path to a SQLite database")
     src.add_argument("--pg", metavar="DSN", help="Postgres DSN, e.g. postgresql://user:pw@host/db (needs tzimpact[postgres])")
-    s.add_argument("--table", required=True)
+    src.add_argument("--ics", metavar="PATH", help="an iCalendar file; DTSTART;TZID events are assessed (read-only)")
+    s.add_argument("--table", help="(--sqlite/--pg) table to scan")
     s.add_argument("--id-col", default="id")
-    s.add_argument("--utc-col", required=True)
-    s.add_argument("--tz-col", required=True)
+    s.add_argument("--utc-col", help="(--sqlite/--pg) column holding the stored UTC instant")
+    s.add_argument("--tz-col", help="(--sqlite/--pg) column holding the IANA zone name")
     s.add_argument("--years", type=int, default=10)
     s.add_argument(
         "--semantics", choices=corr.SEMANTICS, default=corr.WALL_CLOCK,

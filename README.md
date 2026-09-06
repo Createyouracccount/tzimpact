@@ -128,6 +128,15 @@ under `MANUAL REVIEW` with its candidates.
 round-trip exactly. Naive strings are interpreted in the machine's local time,
 as the scan does.
 
+**Calendars (`--ics`) are assessed, never rewritten.** `tzimpact scan --ics
+file.ics --from 2026b --to 2026c` reports every `DTSTART;TZID=...` event
+whose instant differs between the two releases (resolution follows Python's
+`zoneinfo`, `fold=0`). No corrections file is produced for a calendar. UTC
+(`...Z`) and all-day events cannot be affected and are only counted; floating
+times, non-tzdb TZIDs and malformed dates are reported as not assessed and
+the exit code is 2. `RRULE` recurrences are not expanded: only `DTSTART` is
+assessed.
+
 ## License
 
 MIT
