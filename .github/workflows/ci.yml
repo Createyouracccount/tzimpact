@@ -60,6 +60,23 @@ jobs:
       - name: Test suite (golden guard fails a run in which zero golden tests ran)
         run: python -m pytest -q
 
+      # The dataset drift guard only names the files that differ. When it fails,
+      # regenerate data/ on this runner and upload the diff so the difference
+      # (typically a zic version) can be read instead of guessed.
+      - name: On failure, regenerate the dataset and upload the diff
+        if: failure()
+        run: |
+          set -euo pipefail
+          latest=$(python -c "import json; print(json.load(open('data/index.json'))['pairs'][-1]['to'])")
+          tzimpact dataset --from 2020a --to "$latest" --out /tmp/fresh-data
+          { zic --version 2>&1 || true; } | head -1 > /tmp/fresh-data/ZIC_VERSION.txt
+          diff -ru data /tmp/fresh-data > /tmp/fresh-data/DIFF.txt || true
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: fresh-data-py${{ matrix.python }}
+          path: /tmp/fresh-data/
+
   package:
     runs-on: ubuntu-latest
     steps:
