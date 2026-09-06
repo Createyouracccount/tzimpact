@@ -12,10 +12,28 @@
   "changed_zones": [
     {
       "zone": "America/Scoresbysund",
+      "from_utc": "2024-03-31T01:00:00Z",
+      "to_utc": "2024-10-27T01:00:00Z",
+      "old_offset": 0,
+      "new_offset": -3600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Scoresbysund",
       "from_utc": "2024-10-27T01:00:00Z",
       "to_utc": "2025-03-30T01:00:00Z",
       "old_offset": -3600,
       "new_offset": -7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Scoresbysund",
+      "from_utc": "2025-03-30T01:00:00Z",
+      "to_utc": "2025-10-26T01:00:00Z",
+      "old_offset": 0,
+      "new_offset": -3600,
       "shift_seconds": -3600,
       "aliases": []
     },
@@ -30,10 +48,28 @@
     },
     {
       "zone": "America/Scoresbysund",
+      "from_utc": "2026-03-29T01:00:00Z",
+      "to_utc": "2026-10-25T01:00:00Z",
+      "old_offset": 0,
+      "new_offset": -3600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Scoresbysund",
       "from_utc": "2026-10-25T01:00:00Z",
       "to_utc": "2027-03-28T01:00:00Z",
       "old_offset": -3600,
       "new_offset": -7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Scoresbysund",
+      "from_utc": "2027-03-28T01:00:00Z",
+      "to_utc": "2027-10-31T01:00:00Z",
+      "old_offset": 0,
+      "new_offset": -3600,
       "shift_seconds": -3600,
       "aliases": []
     },
@@ -48,10 +84,28 @@
     },
     {
       "zone": "America/Scoresbysund",
+      "from_utc": "2028-03-26T01:00:00Z",
+      "to_utc": "2028-10-29T01:00:00Z",
+      "old_offset": 0,
+      "new_offset": -3600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Scoresbysund",
       "from_utc": "2028-10-29T01:00:00Z",
       "to_utc": "2029-03-25T01:00:00Z",
       "old_offset": -3600,
       "new_offset": -7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Scoresbysund",
+      "from_utc": "2029-03-25T01:00:00Z",
+      "to_utc": "2029-10-28T01:00:00Z",
+      "old_offset": 0,
+      "new_offset": -3600,
       "shift_seconds": -3600,
       "aliases": []
     },
@@ -66,10 +120,28 @@
     },
     {
       "zone": "America/Scoresbysund",
+      "from_utc": "2030-03-31T01:00:00Z",
+      "to_utc": "2030-10-27T01:00:00Z",
+      "old_offset": 0,
+      "new_offset": -3600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Scoresbysund",
       "from_utc": "2030-10-27T01:00:00Z",
       "to_utc": "2031-03-30T01:00:00Z",
       "old_offset": -3600,
       "new_offset": -7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Scoresbysund",
+      "from_utc": "2031-03-30T01:00:00Z",
+      "to_utc": "2031-10-26T01:00:00Z",
+      "old_offset": 0,
+      "new_offset": -3600,
       "shift_seconds": -3600,
       "aliases": []
     },
@@ -84,10 +156,28 @@
     },
     {
       "zone": "America/Scoresbysund",
+      "from_utc": "2032-03-28T01:00:00Z",
+      "to_utc": "2032-10-31T01:00:00Z",
+      "old_offset": 0,
+      "new_offset": -3600,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Scoresbysund",
       "from_utc": "2032-10-31T01:00:00Z",
       "to_utc": "2033-03-27T01:00:00Z",
       "old_offset": -3600,
       "new_offset": -7200,
+      "shift_seconds": -3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Scoresbysund",
+      "from_utc": "2033-03-27T01:00:00Z",
+      "to_utc": "2033-10-30T01:00:00Z",
+      "old_offset": 0,
+      "new_offset": -3600,
       "shift_seconds": -3600,
       "aliases": []
     },

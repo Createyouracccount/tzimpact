@@ -86,3 +86,42 @@ def test_month_week_day_rule_unchanged():
     """US rules must still resolve exactly as before the refactor."""
     assert MonthWeekDayRule(3, 2, 0, 7200).transition_utc(2026, -5 * 3600) == _utc(2026, 3, 8, 7)
     assert MonthWeekDayRule(11, 1, 0, 7200).transition_utc(2026, -4 * 3600) == _utc(2026, 11, 1, 6)
+
+
+# --- a DST offset of exactly zero is a value, not "no DST" -------------------
+#
+# Two real footers have dst_offset == 0: Atlantic/Azores and (until 2023d)
+# America/Scoresbysund are '<-01>1<+00>,...' (std -01, summer +00), and
+# Europe/Dublin is 'IST-1GMT0,M10.5.0,M3.5.0/1' (negative DST: summer is
+# "standard" +01, winter is "DST" at +00). `dst_offset or std_offset` treats
+# that 0 as missing and reports standard time all year. Found by the dataset
+# drift guard on CI (Ubuntu's zic writes those zones with explicit transitions,
+# so only the footer path was wrong).
+
+
+def _footer_only(text: str) -> tzif.Tz:
+    p = tzif.parse_posix(text)
+    return tzif.Tz(transitions=[], offsets=[], initial_offset=p.std_offset, posix=p)
+
+
+def test_parse_posix_keeps_a_zero_dst_offset():
+    p = tzif.parse_posix("<-01>1<+00>,M3.5.0/0,M10.5.0/1")
+    assert (p.std_offset, p.dst_offset, p.is_fixed) == (-3600, 0, False)
+    p = tzif.parse_posix("IST-1GMT0,M10.5.0,M3.5.0/1")
+    assert (p.std_offset, p.dst_offset, p.is_fixed) == (3600, 0, False)
+
+
+def test_azores_footer_summer_is_utc_plus_zero():
+    tz = _footer_only("<-01>1<+00>,M3.5.0/0,M10.5.0/1")
+    assert tz.offset_at(_utc(2024, 7, 1, 12)) == 0
+    assert tz.offset_at(_utc(2024, 12, 1, 12)) == -3600
+    # DST starts 00:00 local standard (-01) = 01:00 UTC; ends 01:00 local DST (+00) = 01:00 UTC
+    assert tz.boundaries(_utc(2024, 1, 1), _utc(2025, 1, 1)) == [_utc(2024, 3, 31, 1), _utc(2024, 10, 27, 1)]
+
+
+def test_dublin_negative_dst_winter_is_utc_plus_zero():
+    tz = _footer_only("IST-1GMT0,M10.5.0,M3.5.0/1")
+    assert tz.offset_at(_utc(2024, 1, 15, 12)) == 0
+    assert tz.offset_at(_utc(2024, 7, 15, 12)) == 3600
+    # "DST" (GMT) starts last Sunday of October 02:00 IST = 01:00 UTC; ends last Sunday of March 01:00 GMT
+    assert tz.boundaries(_utc(2024, 1, 1), _utc(2025, 1, 1)) == [_utc(2024, 3, 31, 1), _utc(2024, 10, 27, 1)]
