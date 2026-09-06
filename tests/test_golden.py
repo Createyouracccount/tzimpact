@@ -16,7 +16,7 @@ resolving ``Link`` aliases of the *to* release, so NEWS's canonical names
 
 Zones that are *new* in the *to* release (America/Coyhaique in 2025b,
 America/Ciudad_Juarez in 2022g) cannot appear in a diff of common zones and are
-therefore excluded from ``expected``; see docs/verify/RISKS.md.
+therefore excluded from ``expected``.
 """
 
 import datetime as dt

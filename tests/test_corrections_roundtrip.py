@@ -113,7 +113,7 @@ def test_round_trip_wall_clock(synthetic_db, changes, tmp_path):
     _apply(db, sql_path)
     after = {r[0]: r for r in _dump(db)}
 
-    # 1. Re-scan. NOTE (measured, see docs/verify/NOTES-fix2.md §3): a corrected
+    # 1. Re-scan. NOTE (measured): a corrected
     # instant still lies inside the change window, so the scan - which has no
     # notion of intent - flags exactly the same rows again. "0 residual rows"
     # is therefore not attainable by any scan; the round-trip judge is #5 below.

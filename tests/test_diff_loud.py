@@ -3,7 +3,7 @@
 The diff of two releases is only trustworthy if every zone that exists in both
 was actually compared. Before this test existed, ``diff()`` swallowed parse
 errors per zone (``except Exception: continue``) and Asia/Tehran vanished from
-every 2020a-2022a diff without a trace (docs/verify/GATE.md, row 12).
+every 2020a-2022a diff without a trace.
 """
 
 import datetime as dt

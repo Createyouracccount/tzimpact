@@ -20,7 +20,8 @@ class Unparseable:
 
     Surfaced, never dropped: a diff that silently skips a zone reports
     "no change" for rows in that zone, which is the one answer this tool
-    must never give by accident (see docs/verify/GATE.md row 12).
+    must never give by accident (before this class existed, Asia/Tehran
+    vanished from every 2020a-2022a diff without a trace).
     """
 
     zone: str
