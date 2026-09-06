@@ -53,3 +53,20 @@ def test_cli_diff_json_carries_unparseable(two_releases, capsys):
     out = json.loads(capsys.readouterr().out)
     assert rc != 0
     assert [u["zone"] for u in out["unparseable"]] == ["Bad/Zone"]
+
+
+def test_diff_accepts_both_positional_and_flag_forms(capsys):
+    """`scan` and `dataset` take --from/--to; `diff` must not be the odd one out."""
+    assert cli.main(["diff", "2026b", "2026c"]) == 0
+    positional = capsys.readouterr().out
+    assert cli.main(["diff", "--from", "2026b", "--to", "2026c"]) == 0
+    assert capsys.readouterr().out == positional
+    assert cli.main(["diff", "2026b", "--to", "2026c"]) == 0
+    assert capsys.readouterr().out == positional
+
+
+def test_diff_rejects_ambiguous_or_missing_versions(capsys):
+    for argv in (["diff", "2026b", "2026c", "--from", "2026a"], ["diff", "2026b"], ["diff"]):
+        with pytest.raises(SystemExit) as e:
+            cli.main(argv)
+        assert e.value.code == 2, argv

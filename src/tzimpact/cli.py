@@ -127,8 +127,11 @@ def main(argv=None) -> int:
     sub = p.add_subparsers(dest="cmd", required=True)
 
     d = sub.add_parser("diff", help="which zones changed for future instants")
-    d.add_argument("from_version")
-    d.add_argument("to_version")
+    # positional for the short form, --from/--to to match `scan` and `dataset`
+    d.add_argument("from_version", nargs="?", metavar="FROM")
+    d.add_argument("to_version", nargs="?", metavar="TO")
+    d.add_argument("--from", dest="from_flag", metavar="FROM")
+    d.add_argument("--to", dest="to_flag", metavar="TO")
     d.add_argument("--years", type=int, default=10)
     d.add_argument("--json", action="store_true")
     d.set_defaults(func=cmd_diff)
@@ -159,6 +162,15 @@ def main(argv=None) -> int:
     ds.set_defaults(func=cmd_dataset)
 
     args = p.parse_args(argv)
+    if args.func is cmd_diff:
+        for name in ("from", "to"):
+            flag, pos = getattr(args, f"{name}_flag"), getattr(args, f"{name}_version")
+            if flag and pos:
+                p.error(f"--{name} and the positional {name.upper()} are the same argument; give one")
+            setattr(args, f"{name}_version", flag or pos)
+        missing = [n.upper() for n in ("from", "to") if not getattr(args, f"{n}_version")]
+        if missing:
+            p.error(f"diff needs {' and '.join(missing)} (positional or --from/--to)")
     return args.func(args)
 
 
