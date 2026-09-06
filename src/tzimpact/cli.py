@@ -7,24 +7,52 @@ import datetime as dt
 import json
 import sys
 
-from .diff import diff
+from .diff import DiffResult, diff
 from .scan import index_changes, scan_sqlite
+
+EXIT_INCOMPLETE = 2  # some zones could not be compared; the answer is not complete
 
 
 def _fmt(ts: int | None) -> str:
     return dt.datetime.fromtimestamp(ts, dt.timezone.utc).strftime("%Y-%m-%d") if ts else "open"
 
 
+def _warn_incomplete(result: DiffResult) -> None:
+    """Loud, on stderr, and reflected in the exit code: never a silent 'no change'."""
+    if not result.unparseable:
+        return
+    n = len(result.unparseable)
+    print(
+        f"WARNING: {n} zone{'s' if n != 1 else ''} could not be parsed and {'are' if n != 1 else 'is'} "
+        "NOT covered by this result:",
+        file=sys.stderr,
+    )
+    for u in result.unparseable:
+        print(f"  {u.zone}: {u.error}", file=sys.stderr)
+
+
 def cmd_diff(args) -> int:
-    changes = diff(args.from_version, args.to_version, years=args.years)
+    result = diff(args.from_version, args.to_version, years=args.years)
+    changes = result.changes
     if args.json:
-        json.dump([c.as_dict() for c in changes], sys.stdout, indent=2)
+        json.dump(
+            {
+                "from": args.from_version,
+                "to": args.to_version,
+                "changes": [c.as_dict() for c in changes],
+                "unparseable": [u.as_dict() for u in result.unparseable],
+            },
+            sys.stdout,
+            indent=2,
+        )
         print()
-        return 0
+        _warn_incomplete(result)
+        return EXIT_INCOMPLETE if result.unparseable else 0
     zones = sorted({c.zone for c in changes})
     if not zones:
         print(f"{args.from_version} -> {args.to_version}: no future offsets changed")
-        return 0
+        _warn_incomplete(result)
+        return EXIT_INCOMPLETE if result.unparseable else 0
     print(f"{len(zones)} zones changed for future instants ({args.from_version} -> {args.to_version}):")
     for z in zones:
         cs = [c for c in changes if c.zone == z]
@@ -35,13 +63,14 @@ def cmd_diff(args) -> int:
             f"{first.old_offset/3600:+.0f}h -> {first.new_offset/3600:+.0f}h "
             f"({shift:+.0f}h, {len(cs)} window{'s' if len(cs) != 1 else ''})"
         )
-    return 0
+    _warn_incomplete(result)
+    return EXIT_INCOMPLETE if result.unparseable else 0
 
 
 def cmd_scan(args) -> int:
-    changes = diff(args.from_version, args.to_version, years=args.years)
+    result = diff(args.from_version, args.to_version, years=args.years)
     hits, total = scan_sqlite(
-        args.sqlite, args.table, args.id_col, args.utc_col, args.tz_col, changes
+        args.sqlite, args.table, args.id_col, args.utc_col, args.tz_col, result.changes
     )
     print(f"{args.table}: {total:,} rows scanned")
     print(f"  {len(hits):,} rows affected ({len(hits)/total*100:.1f}%)" if total else "  empty")
@@ -54,7 +83,8 @@ def cmd_scan(args) -> int:
         e = min(hits, key=lambda h: h.stored_utc)
         print(f"  earliest affected: row {e.row_id} in {e.zone}")
         print(f"    was {e.old_local}  ->  now {e.new_local}")
-    return 0
+    _warn_incomplete(result)
+    return EXIT_INCOMPLETE if result.unparseable else 0
 
 
 def main(argv=None) -> int:

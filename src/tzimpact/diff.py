@@ -9,9 +9,39 @@ sampling, so a change cannot be stepped over.
 from __future__ import annotations
 
 import datetime as dt
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 
 from . import releases, tzif
+
+
+@dataclass(frozen=True)
+class Unparseable:
+    """A zone present in both releases that could not be compared.
+
+    Surfaced, never dropped: a diff that silently skips a zone reports
+    "no change" for rows in that zone, which is the one answer this tool
+    must never give by accident (see docs/verify/GATE.md row 12).
+    """
+
+    zone: str
+    error: str
+
+    def as_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
+class DiffResult:
+    """Deliberately not iterable and not truthy: callers must read ``.changes``
+    and ``.unparseable`` explicitly, so an incomplete result can never look
+    like an empty one."""
+
+    changes: list[Change] = field(default_factory=list)
+    unparseable: list[Unparseable] = field(default_factory=list)
+
+    @property
+    def complete(self) -> bool:
+        return not self.unparseable
 
 
 @dataclass(frozen=True)
@@ -62,17 +92,24 @@ def diff(
     to_version: str,
     start: dt.datetime | None = None,
     years: int = 10,
-) -> list[Change]:
+) -> DiffResult:
+    """Compare every zone present in both releases over [start, start + years).
+
+    A zone that cannot be read in either release is *not* skipped: it is
+    returned in ``DiffResult.unparseable`` so the caller can refuse to call the
+    result complete. There is deliberately no path that drops a zone.
+    """
     za, zb = releases.compile(from_version), releases.compile(to_version)
     start_dt = start or dt.datetime.now(dt.timezone.utc)
     s = int(start_dt.timestamp())
     e = int((start_dt + dt.timedelta(days=365 * years)).timestamp())
     common = sorted(releases.zones(za) & releases.zones(zb))
-    out: list[Change] = []
+    result = DiffResult()
     for z in common:
         try:
             ta, tb = tzif.read(str(za / z)), tzif.read(str(zb / z))
-        except Exception:
+        except Exception as exc:  # recorded, never dropped
+            result.unparseable.append(Unparseable(z, f"{type(exc).__name__}: {exc}"))
             continue
-        out.extend(diff_zone(ta, tb, z, s, e))
-    return out
+        result.changes.extend(diff_zone(ta, tb, z, s, e))
+    return result
