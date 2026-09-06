@@ -7,6 +7,7 @@ import datetime as dt
 import json
 import sys
 
+from . import corrections as corr
 from .diff import DiffResult, diff
 from .scan import index_changes, scan_sqlite
 
@@ -83,6 +84,24 @@ def cmd_scan(args) -> int:
         e = min(hits, key=lambda h: h.stored_utc)
         print(f"  earliest affected: row {e.row_id} in {e.zone}")
         print(f"    was {e.old_local}  ->  now {e.new_local}")
+    fixes, reviews = corr.plan(hits, args.to_version, semantics=args.semantics)
+    sql = corr.render_sql(
+        fixes, reviews, table=args.table, id_col=args.id_col, utc_col=args.utc_col, tz_col=args.tz_col,
+        from_version=args.from_version, to_version=args.to_version, semantics=args.semantics, affected=hits,
+    )
+    with open(args.corrections, "w", encoding="utf-8") as f:
+        f.write(sql)
+    if args.semantics == corr.INSTANT:
+        print(f"  -> {args.corrections}: instant semantics, no corrections (stored instants are kept)")
+    else:
+        print(
+            f"  -> corrections written to {args.corrections} "
+            f"({len(fixes)} UPDATE, {len(reviews)} manual review) - review before applying"
+        )
+        print(
+            "  ONE-SHOT: scan once per release upgrade. Do not scan again after applying the file: "
+            "corrected rows are re-detected and a regenerated file would move them a second time."
+        )
     _warn_incomplete(result)
     return EXIT_INCOMPLETE if result.unparseable else 0
 
@@ -107,6 +126,12 @@ def main(argv=None) -> int:
     s.add_argument("--utc-col", required=True)
     s.add_argument("--tz-col", required=True)
     s.add_argument("--years", type=int, default=10)
+    s.add_argument(
+        "--semantics", choices=corr.SEMANTICS, default=corr.WALL_CLOCK,
+        help="wall-clock (default): rows keep the local time they were booked for, the stored instant moves; "
+             "instant: stored instants are correct, only their displayed local time changes (no UPDATEs)",
+    )
+    s.add_argument("--corrections", default="corrections.sql", help="where to write the SQL (never executed)")
     s.set_defaults(func=cmd_scan)
 
     args = p.parse_args(argv)

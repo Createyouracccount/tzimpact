@@ -39,6 +39,21 @@ appointments: 5,000 rows scanned
 Postgres, Java and Python ship tzdata updates without telling you what they
 invalidated.
 
+Closer neighbours, and how tzimpact differs:
+
+| tool | what it does | what it does not do |
+|---|---|---|
+| [tzguard](https://github.com/oddurs/tzguard) | the same semantic release diff (TZif + POSIX footer), plus scanning a *codebase* for zone identifiers | scan rows in a database, or emit corrections (database scanning is on its roadmap) |
+| [tzdb-impact](https://github.com/megu0xxx0x/tzdb-impact) | compares hand-written fixture events across two releases in CI; its CLI command is also called `tzimpact` | scan a database, aggregate per zone, or emit SQL |
+| Oracle `DBMS_DST` | finds and *rewrites* stale `TIMESTAMP WITH TIME ZONE` columns after an Oracle time zone file upgrade | anything outside Oracle; it writes to your data |
+| Microsoft Exchange calendar update tool (2007) | rebased stored appointments after Windows DST rule changes | anything outside Exchange |
+| [Crunchy Data's recipe](https://www.crunchydata.com/blog/british-columbia-and-time-zone-changes) | the `UPDATE … AT TIME ZONE` statement you would write by hand | tell you *which* rows, exactly |
+
+tzimpact is the vendor-neutral, read-only version of that Oracle utility: it
+enumerates exactly which rows changed meaning and writes the SQL for you to
+review. The name collides with tzdb-impact's CLI command; the projects are
+unrelated.
+
 ## Exact, not sampled
 
 Offsets can only change at an explicit TZif transition or at an instant
@@ -77,6 +92,41 @@ zic --version          # required: tzimpact compiles releases with the system zi
 tzimpact **reads**. It never writes to your database — corrections are emitted
 for you to review and apply. It analyses future instants only; the past is
 already settled.
+
+## Limitations
+
+**Read-only boundary.** tzimpact does not own your database and keeps no
+state in it. That is deliberate (a vendor-neutral tool cannot safely write to
+every database) and it has a consequence:
+
+**Run `scan` once per release upgrade, then stop.** A corrected instant still
+lies inside the change window, and the scan has no way to know a row was
+already corrected — the stored value carries no record of which release it
+was written under. Scanning again after applying `corrections.sql` re-detects
+the same rows, and applying a *regenerated* file would move them a second
+time. The generated file itself is idempotent (each `UPDATE` matches only the
+pre-correction value), so applying the *same* file twice is harmless; applying
+a *new* one is not. The SQL header and the CLI both say so. Oracle's
+`DBMS_DST` avoids this by rewriting the columns itself and tracking the
+database's time zone file version; tzimpact will not take that step. A hand
+written `UPDATE … AT TIME ZONE` has the same limitation.
+
+**Wall-clock is an assumption you choose.** `--semantics wall-clock` (default)
+means "the user picked a local time; keep it". `--semantics instant` means
+"the stored moment is right; only its display changes" and emits no `UPDATE`.
+tzimpact cannot tell which one a given table needs.
+
+**Zone splits are invisible.** When tzdb splits a new zone off an existing one
+(America/Coyhaique from America/Santiago in 2025b), rows stored under the old
+zone name are not flagged, because the old zone's rules did not change.
+
+**Local times that stop existing.** If the intended local time falls into a
+gap or a fold under the new rules, no `UPDATE` is generated; the row is listed
+under `MANUAL REVIEW` with its candidates.
+
+**Stored formats.** Integer epochs and ISO 8601 strings with `Z` or an offset
+round-trip exactly. Naive strings are interpreted in the machine's local time,
+as the scan does.
 
 ## License
 

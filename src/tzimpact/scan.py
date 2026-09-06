@@ -23,6 +23,9 @@ class Affected:
     old_local: str
     new_local: str
     shift_seconds: int
+    old_offset: int = 0
+    new_offset: int = 0
+    stored_raw: object = None  # the cell exactly as stored; corrections must match it
 
 
 def _local(ts: int, offset: int) -> str:
@@ -36,7 +39,9 @@ def index_changes(changes: list[Change]) -> dict[str, list[Change]]:
     return by_zone
 
 
-def match(row_id, zone: str, stored_utc: int, by_zone: dict[str, list[Change]]) -> Affected | None:
+def match(
+    row_id, zone: str, stored_utc: int, by_zone: dict[str, list[Change]], stored_raw: object = None
+) -> Affected | None:
     for c in by_zone.get(zone, ()):
         if c.start_utc <= stored_utc and (c.end_utc is None or stored_utc < c.end_utc):
             return Affected(
@@ -44,8 +49,13 @@ def match(row_id, zone: str, stored_utc: int, by_zone: dict[str, list[Change]]) 
                 _local(stored_utc, c.old_offset),
                 _local(stored_utc, c.new_offset),
                 c.shift_seconds,
+                c.old_offset, c.new_offset, stored_raw,
             )
     return None
+
+
+def _ident(name: str) -> str:
+    return '"' + str(name).replace('"', '""') + '"'
 
 
 def scan_sqlite(
@@ -54,14 +64,16 @@ def scan_sqlite(
     by_zone = index_changes(changes)
     conn = sqlite3.connect(db)
     conn.row_factory = sqlite3.Row
-    rows = conn.execute(f"SELECT {id_col}, {utc_col}, {tz_col} FROM {table}").fetchall()
+    rows = conn.execute(
+        f"SELECT {_ident(id_col)}, {_ident(utc_col)}, {_ident(tz_col)} FROM {_ident(table)}"
+    ).fetchall()
     hits = []
     for r in rows:
         raw = r[utc_col]
         ts = int(raw) if isinstance(raw, (int, float)) else int(
             dt.datetime.fromisoformat(str(raw).replace("Z", "+00:00")).timestamp()
         )
-        hit = match(r[id_col], r[tz_col], ts, by_zone)
+        hit = match(r[id_col], r[tz_col], ts, by_zone, stored_raw=raw)
         if hit:
             hits.append(hit)
     conn.close()
