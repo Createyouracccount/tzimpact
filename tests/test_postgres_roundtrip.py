@@ -1,10 +1,13 @@
-"""Round trip on a real Postgres (throwaway Docker container, psql applies the file).
+"""Round trip on a real Postgres; psql applies the generated file.
 
-This judge does not skip: if Docker or psycopg is unavailable it FAILS with a
-clear message (gate A lesson: a skipped judge is a green lie).
+The server comes from $TZIMPACT_TEST_PG (a CI service container) or, failing
+that, a throwaway Docker container. This judge does not skip: if neither is
+available it FAILS with a clear message (gate A lesson: a skipped judge is a
+green lie).
 """
 
 import datetime as dt
+import os
 import shutil
 import subprocess
 import time
@@ -22,15 +25,40 @@ UTC = dt.timezone.utc
 IMAGE = "postgres:16-alpine"
 
 
+def _wait_ready(dsn: str, timeout: int = 90) -> None:
+    import psycopg
+
+    deadline = time.time() + timeout
+    last = None
+    while time.time() < deadline:
+        try:
+            with psycopg.connect(dsn, connect_timeout=3) as conn:
+                conn.execute("SELECT 1")
+            return
+        except Exception as exc:  # still starting
+            last = exc
+            time.sleep(1)
+    pytest.fail(f"Postgres judge unavailable: server never became ready: {last!r}")
+
+
 @pytest.fixture(scope="module")
 def pg():
-    """(dsn, container id). Fails loudly when the judge cannot run."""
+    """(dsn, container id or None). Fails loudly when the judge cannot run."""
     try:
-        import psycopg
+        import psycopg  # noqa: F401
     except ImportError:
         pytest.fail("Postgres judge unavailable: psycopg not installed (pip install 'tzimpact[postgres]')")
+    if shutil.which("psql") is None and not shutil.which("docker"):
+        pytest.fail("Postgres judge unavailable: needs psql (with $TZIMPACT_TEST_PG) or docker")
+    external = os.environ.get("TZIMPACT_TEST_PG")
+    if external:  # CI service container: psql runs on the host
+        if shutil.which("psql") is None:
+            pytest.fail("Postgres judge needs psql on PATH to apply corrections.sql (apt install postgresql-client)")
+        _wait_ready(external)
+        yield external, None
+        return
     if shutil.which("docker") is None:
-        pytest.fail("Postgres judge unavailable: docker not installed")
+        pytest.fail("Postgres judge unavailable: set TZIMPACT_TEST_PG or install docker")
     run = subprocess.run(
         ["docker", "run", "-d", "--rm", "-e", "POSTGRES_PASSWORD=tz", "-p", "127.0.0.1::5432", IMAGE],
         capture_output=True, text=True,
@@ -42,28 +70,17 @@ def pg():
         port = subprocess.run(["docker", "port", cid, "5432/tcp"], capture_output=True, text=True, check=True).stdout
         port = port.strip().splitlines()[0].rsplit(":", 1)[1]
         dsn = f"postgresql://postgres:tz@127.0.0.1:{port}/postgres"
-        deadline = time.time() + 90
-        last = None
-        while time.time() < deadline:
-            try:
-                with psycopg.connect(dsn, connect_timeout=3) as conn:
-                    conn.execute("SELECT 1")
-                break
-            except Exception as exc:  # container still starting
-                last = exc
-                time.sleep(1)
-        else:
-            pytest.fail(f"Postgres judge unavailable: container never became ready: {last!r}")
+        _wait_ready(dsn)
         yield dsn, cid
     finally:
         subprocess.run(["docker", "rm", "-f", cid], capture_output=True)
 
 
-def _psql(cid: str, sql: str) -> None:
-    subprocess.run(
-        ["docker", "exec", "-i", cid, "psql", "-U", "postgres", "-q", "-v", "ON_ERROR_STOP=1"],
-        input=sql, text=True, check=True, capture_output=True,
-    )
+def _apply(pg, sql: str) -> None:
+    """Apply the generated file the way a DBA would: psql, ON_ERROR_STOP."""
+    dsn, cid = pg
+    cmd = (["docker", "exec", "-i", cid, "psql", "-U", "postgres"] if cid is not None else ["psql", dsn])
+    subprocess.run(cmd + ["-q", "-v", "ON_ERROR_STOP=1"], input=sql, text=True, check=True, capture_output=True)
 
 
 def _rows(dsn, table):
@@ -89,7 +106,7 @@ COLUMN_TYPES = {
 def test_round_trip_postgres(pg, table, tmp_path):
     import psycopg
 
-    dsn, cid = pg
+    dsn, _ = pg
     changes = diff(FROM, TO, start=WHEN, years=10).changes
     cas = [c for c in changes if c.zone == "Africa/Casablanca"]
     edm = [c for c in changes if c.zone == "America/Edmonton"]
@@ -132,7 +149,7 @@ def test_round_trip_postgres(pg, table, tmp_path):
     sql = sql_path.read_text()
     assert sum(l.startswith("UPDATE ") for l in sql.splitlines()) == sum(expected.values())
 
-    _psql(cid, sql)  # the realistic path: psql -f corrections.sql
+    _apply(pg, sql)  # the realistic path: psql applies corrections.sql
     after = {r[0]: r for r in _rows(dsn, table)}
     for i, aff in expected.items():
         if not aff:
@@ -140,7 +157,7 @@ def test_round_trip_postgres(pg, table, tmp_path):
         else:
             assert after[i][1] != before[i][1] and type(after[i][1]) is type(before[i][1])
 
-    _psql(cid, sql)  # idempotent
+    _apply(pg, sql)  # idempotent
     assert {r[0]: r for r in _rows(dsn, table)} == after
 
     zi_from, zi_to = releases.compile(FROM), releases.compile(TO)

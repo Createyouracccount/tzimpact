@@ -1,0 +1,89 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 6 * * 1"   # a new tzdb release must not break the golden suite unnoticed
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12", "3.13"]
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_PASSWORD: tz
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      TZIMPACT_TEST_PG: postgresql://postgres:tz@127.0.0.1:5432/postgres
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install postgresql-client (psql applies corrections.sql)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client
+
+      # zic compiles each release; zdump is the independent oracle. A missing
+      # binary would turn the oracle into a silent skip, so fail here instead.
+      - name: Preflight - required external tools
+        run: |
+          set -euo pipefail
+          for bin in zic zdump psql; do
+            command -v "$bin" >/dev/null || { echo "::error::$bin not found on PATH"; exit 1; }
+            echo "$bin -> $(command -v "$bin")"
+          done
+
+      - name: Cache tzdb releases
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/tzimpact
+          key: tzdb-${{ hashFiles('data/index.json') }}
+          restore-keys: tzdb-
+
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e ".[dev]"
+
+      - name: Test suite (golden guard fails a run in which zero golden tests ran)
+        run: python -m pytest -q
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: python -m pip install --upgrade pip build twine
+      - run: python -m build
+      - run: twine check dist/*
+
+      - name: Install the wheel in a clean venv and run it
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq tzdata
+          python -m venv /tmp/clean
+          /tmp/clean/bin/pip install --quiet dist/*.whl
+          # the package must pull in nothing at runtime
+          deps=$(/tmp/clean/bin/pip list --format=freeze | grep -viE '^(pip|setuptools|wheel)=' | grep -v '^tzimpact==' || true)
+          [ -z "$deps" ] || { echo "::error::unexpected runtime dependencies: $deps"; exit 1; }
+          /tmp/clean/bin/tzimpact diff 2026b 2026c
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
