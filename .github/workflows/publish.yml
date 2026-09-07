@@ -1,0 +1,46 @@
+name: publish
+
+# PyPI release via Trusted Publishing. One-time setup on pypi.org:
+#   Account settings -> Publishing -> add a pending GitHub publisher
+#   (project: tzimpact, owner: Createyouracccount, repository: tzimpact,
+#    workflow: publish.yml, environment: pypi)
+# Then:  git tag vX.Y.Z && git push origin vX.Y.Z
+# Nothing here runs on an ordinary push; only a v* tag triggers it.
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --upgrade pip build twine
+      - name: Tag must match the version in pyproject.toml
+        run: |
+          set -euo pipefail
+          v=$(python -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")
+          [ "${GITHUB_REF_NAME}" = "v$v" ] || { echo "::error::tag ${GITHUB_REF_NAME} does not match version $v"; exit 1; }
+      - run: python -m build
+      - run: twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
