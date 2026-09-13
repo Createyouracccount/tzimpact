@@ -203,6 +203,13 @@
       "released": "2026-07-08",
       "file": "2026b-2026c.json",
       "changed_zone_count": 3
+    },
+    {
+      "from": "2026c",
+      "to": "2026d",
+      "released": "2026-09-11",
+      "file": "2026c-2026d.json",
+      "changed_zone_count": 1
     }
   ]
 }
