@@ -1,0 +1,104 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2026c",
+  "to": "2026d",
+  "released": "2026-09-11",
+  "news_header_label": "2026d",
+  "window": {
+    "since": "2026-09-11T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": [
+    {
+      "zone": "America/Inuvik",
+      "from_utc": "2026-11-01T08:00:00Z",
+      "to_utc": "2027-03-14T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Inuvik",
+      "from_utc": "2027-11-07T08:00:00Z",
+      "to_utc": "2028-03-12T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Inuvik",
+      "from_utc": "2028-11-05T08:00:00Z",
+      "to_utc": "2029-03-11T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Inuvik",
+      "from_utc": "2029-11-04T08:00:00Z",
+      "to_utc": "2030-03-10T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Inuvik",
+      "from_utc": "2030-11-03T08:00:00Z",
+      "to_utc": "2031-03-09T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Inuvik",
+      "from_utc": "2031-11-02T08:00:00Z",
+      "to_utc": "2032-03-14T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Inuvik",
+      "from_utc": "2032-11-07T08:00:00Z",
+      "to_utc": "2033-03-13T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Inuvik",
+      "from_utc": "2033-11-06T08:00:00Z",
+      "to_utc": "2034-03-12T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Inuvik",
+      "from_utc": "2034-11-05T08:00:00Z",
+      "to_utc": "2035-03-11T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    },
+    {
+      "zone": "America/Inuvik",
+      "from_utc": "2035-11-04T08:00:00Z",
+      "to_utc": "2036-03-09T09:00:00Z",
+      "old_offset": -25200,
+      "new_offset": -21600,
+      "shift_seconds": 3600,
+      "aliases": []
+    }
+  ]
+}
