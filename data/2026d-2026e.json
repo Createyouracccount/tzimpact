@@ -1,0 +1,134 @@
+{
+  "schema": "tzimpact-data/1",
+  "generator": "tzimpact 0.0.1",
+  "from": "2026d",
+  "to": "2026e",
+  "released": "2026-09-29",
+  "news_header_label": "2026e",
+  "window": {
+    "since": "2026-09-29T00:00:00Z",
+    "years": 10
+  },
+  "changed_zones": [
+    {
+      "zone": "America/Winnipeg",
+      "from_utc": "2026-11-01T07:00:00Z",
+      "to_utc": "2027-03-14T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -18000,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Rainy_River",
+        "Canada/Central"
+      ]
+    },
+    {
+      "zone": "America/Winnipeg",
+      "from_utc": "2027-11-07T07:00:00Z",
+      "to_utc": "2028-03-12T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -18000,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Rainy_River",
+        "Canada/Central"
+      ]
+    },
+    {
+      "zone": "America/Winnipeg",
+      "from_utc": "2028-11-05T07:00:00Z",
+      "to_utc": "2029-03-11T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -18000,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Rainy_River",
+        "Canada/Central"
+      ]
+    },
+    {
+      "zone": "America/Winnipeg",
+      "from_utc": "2029-11-04T07:00:00Z",
+      "to_utc": "2030-03-10T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -18000,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Rainy_River",
+        "Canada/Central"
+      ]
+    },
+    {
+      "zone": "America/Winnipeg",
+      "from_utc": "2030-11-03T07:00:00Z",
+      "to_utc": "2031-03-09T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -18000,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Rainy_River",
+        "Canada/Central"
+      ]
+    },
+    {
+      "zone": "America/Winnipeg",
+      "from_utc": "2031-11-02T07:00:00Z",
+      "to_utc": "2032-03-14T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -18000,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Rainy_River",
+        "Canada/Central"
+      ]
+    },
+    {
+      "zone": "America/Winnipeg",
+      "from_utc": "2032-11-07T07:00:00Z",
+      "to_utc": "2033-03-13T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -18000,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Rainy_River",
+        "Canada/Central"
+      ]
+    },
+    {
+      "zone": "America/Winnipeg",
+      "from_utc": "2033-11-06T07:00:00Z",
+      "to_utc": "2034-03-12T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -18000,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Rainy_River",
+        "Canada/Central"
+      ]
+    },
+    {
+      "zone": "America/Winnipeg",
+      "from_utc": "2034-11-05T07:00:00Z",
+      "to_utc": "2035-03-11T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -18000,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Rainy_River",
+        "Canada/Central"
+      ]
+    },
+    {
+      "zone": "America/Winnipeg",
+      "from_utc": "2035-11-04T07:00:00Z",
+      "to_utc": "2036-03-09T08:00:00Z",
+      "old_offset": -21600,
+      "new_offset": -18000,
+      "shift_seconds": 3600,
+      "aliases": [
+        "America/Rainy_River",
+        "Canada/Central"
+      ]
+    }
+  ]
+}
